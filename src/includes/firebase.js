@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase/app'
+import firebase from 'firebase/app'
 
 import 'firebase/auth'
 
@@ -11,4 +11,4 @@ const firebaseConfig = {
   measurementId: 'G-DQQ0YBBB84'
 }
 
-export default initializeApp(firebaseConfig)
+export default firebase.initializeApp(firebaseConfig)
