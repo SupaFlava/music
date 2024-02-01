@@ -10,7 +10,7 @@ import VeeValidatePlugin from './includes/validation'
 import { auth } from './includes/firebase'
 
 let app
-auth.onStateChanged(() => {
+auth.onAuthStateChanged(() => {
   if (!app) {
     app = createApp(App)
 
