@@ -5,14 +5,12 @@ import Manage from '@/views/ManageView.vue'
 
 const routes = [
   {
+    name: 'home',
     path: '/',
     component: Home
   },
-  {
-    path: '/about',
-    component: About
-  },
-  { path: '/manage', component: Manage }
+  { name: 'about', path: '/about', component: About },
+  { name: 'manage', path: '/manage', component: Manage }
 ]
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
