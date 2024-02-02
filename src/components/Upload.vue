@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import { storage } from '@/includes/firebase'
 export default {
   name: 'Upload',
   data() {
@@ -61,7 +62,11 @@ export default {
 
       files.forEach((file) => {
         if (file.type !== 'audio/mpeg') {
+          return
         }
+        const storageRef = storage.ref('')
+        const songsRef = storageRef.child(`songs/${file.name}`)
+        songsRef.put(file)
       })
     }
   }
