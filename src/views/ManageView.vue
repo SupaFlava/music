@@ -74,7 +74,7 @@ export default {
     if (!this.unsavedFlag) {
       next()
     } else {
-      const leave = confirm('You have have unsaved changes. Are you sure you want to leave?')
+      const leave = confirm('You have have unsaved changes. Are you s ure you want to leave?')
       next(leave)
     }
   }
