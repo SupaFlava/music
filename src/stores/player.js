@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import { defineStore, mapGetters } from 'pinia'
 import { Howl } from 'howler'
 
 export default defineStore('player', {
@@ -15,6 +15,24 @@ export default defineStore('player', {
         html5: true
       })
       this.sound.play()
+    },
+    async toggleAudio() {
+      if (!this.sound.playing) {
+        return
+      }
+      if (this.sound.playing()) {
+        this.sound.pause()
+      } else {
+        this.sound.play()
+      }
+    }
+  },
+  getters: {
+    playing: (state) => {
+      if (state.sound.playing) {
+        return state.sound.playing()
+      }
+      return false
     }
   }
 })
