@@ -156,6 +156,15 @@ export default {
         })
       })
     }
+  },
+  watch: {
+    sort(newVal) {
+      this.$router.push({
+        auery: {
+          sort: newVal
+        }
+      })
+    }
   }
 }
 </script>
