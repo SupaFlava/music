@@ -1,4 +1,3 @@
-import { error } from 'cypress/types/jquery'
 import firebase from 'firebase/app'
 
 import 'firebase/auth'
