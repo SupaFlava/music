@@ -1,4 +1,5 @@
-import _ from 'lodash'
+import upperFirst from 'lodash/upperFirst'
+import camelCase from 'lodash/camelCase'
 
 // Auto Registering Global Components
 export default {
@@ -7,8 +8,8 @@ export default {
       eager: true
     })
     Object.entries(baseComponents).forEach(([path, module]) => {
-      const componentName = _.upperFirst(
-        _.camelCase(
+      const componentName = upperFirst(
+        camelCase(
           path
             .split('/')
             .pop()
@@ -16,7 +17,7 @@ export default {
         )
       )
       // export default
-      app.component(`${componentName}`, module.default)
+      app.component(`Base${componentName}`, module.default)
     })
   }
 }
