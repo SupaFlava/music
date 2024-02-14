@@ -1,6 +1,6 @@
 {
   "home": {
-    "listen": "Listen to Great Music!"
+    "listen": "Listen to The Illest Cuts!"
   },
   "song": {
     "comment_count": "No comments | 1 comment | {count} comments"
@@ -10,6 +10,6 @@
     "tos": "Termps of Service"
   },
   "manage": {
-    "my_songs": "My Songs"
+    "my_songs": "Tracks"
   }
 }

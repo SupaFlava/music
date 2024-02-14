@@ -1,12 +1,12 @@
 <template>
-  <header id="header" class="bg-gray-700">
+  <header id="header" class="bg-neutral-950">
     <nav class="container mx-auto flex justify-start items-center py-5 px-4">
       <!-- App Name -->
       <router-link
         class="text-white font-bold uppercase text-2xl mr-4"
         :to="{ name: 'home' }"
         exact-active-class="no-active"
-        >Music</router-link
+        >Scratch Bank</router-link
       >
 
       <div class="flex flex-grow items-center">
@@ -32,7 +32,7 @@
         </ul>
         <ul class="ml-auto">
           <li>
-            <a class="px-2 text-white" href="#" @click.prevent="changeLocale">
+            <a class="px-2 text-green-500" href="#" @click.prevent="changeLocale">
               {{ currentLocale }}</a
             >
           </li>

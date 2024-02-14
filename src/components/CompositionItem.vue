@@ -1,15 +1,15 @@
 <template>
-  <div class="border border-gray-200 p-3 mb-4 rounded">
+  <div class="p-3 mb-5 rounded">
     <div v-show="!showForm">
-      <h4 class="inline-block text-2xl font-bold">{{ song.modified_name }}</h4>
+      <h4 class="inline-block text-1xl font-bold">{{ song.modified_name }}</h4>
       <button
-        class="ml-1 py-1 px-2 text-sm rounded text-white bg-red-600 float-right"
+        class="ml-1 py-1 px-2 text-sm rounded text-white bg-gray-600 float-right"
         @click.prevent="deleteSong"
       >
         <i class="fa fa-times"></i>
       </button>
       <button
-        class="ml-1 py-1 px-2 text-sm rounded text-white bg-blue-600 float-right"
+        class="ml-1 py-1 px-2 text-sm rounded text-white bg-green-600 float-right"
         @click.prevent="showForm = !showForm"
       >
         <i class="fa fa-pencil-alt"></i>
@@ -49,7 +49,7 @@
         <button
           :disabled="in_submission"
           type="submit"
-          class="py-1.5 px-3 rounded text-white bg-green-600"
+          class="py-1.5 px-3 m-1 rounded text-white bg-green-600"
         >
           Submit
         </button>

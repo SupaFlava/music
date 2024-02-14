@@ -9,7 +9,7 @@ export default {
       iconClass += ' float-right'
     }
     if (binding.modifiers.yellow) {
-      iconClass += ' text-yellow-400'
+      iconClass += ' text-green-400'
     } else {
       iconClass += ' text-green-400'
     }
