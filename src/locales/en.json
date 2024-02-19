@@ -1,6 +1,7 @@
 {
   "home": {
-    "listen": "Listen to The Illest Cuts!"
+    "listen": "LISTEN - PRACTICE - UPLOAD",
+    "paragraph": "Here you can share listen comment on all scratch tracks worldwide!"
   },
   "song": {
     "comment_count": "No comments | 1 comment | {count} comments"
@@ -11,5 +12,10 @@
   },
   "manage": {
     "my_songs": "Tracks"
+  },
+  "upload": {
+    "upload_text": "Drop your files here",
+    "upload_button": "Choose Files",
+    "upload_message": "no file Chosen"
   }
 }

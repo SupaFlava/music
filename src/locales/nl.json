@@ -1,8 +1,14 @@
 {
   "home": {
-    "listen": "Luister naar geweldige muziek!"
+    "listen": "LUISTEREN - OEFENEN - UPLOADEN",
+    "paragraph": "Hier kunt u luistercommentaar delen op alle scratchtracks wereldwijd!"
   },
   "manage": {
     "my_songs": "Mijn Liedjes"
+  },
+  "upload": {
+    "upload_text": "Zet uw bestanden hier neer",
+    "upload_button": "Kies documenten",
+    "upload_message": "Geen bestand gekozen"
   }
 }

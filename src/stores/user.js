@@ -10,9 +10,7 @@ export default defineStore('user', {
       const userCred = await auth.createUserWithEmailAndPassword(values.email, values.password)
       await usersCollection.doc(userCred.user.uid).set({
         name: values.name,
-        email: values.email,
-        age: values.age,
-        country: values.country
+        email: values.email
       })
 
       await userCred.user.updateProfile({

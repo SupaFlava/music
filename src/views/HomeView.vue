@@ -10,7 +10,7 @@
         <div class="text-green-500 main-header-content">
           <h1 class="font-bold text-5xl mb-32">{{ $t('home.listen') }}</h1>
           <p class="w-full md:w-8/12 mx-auto text-white">
-            Here you can share listen comment on all scratch tracks worldwide
+            {{ $t('home.paragraph') }}
           </p>
         </div>
       </div>

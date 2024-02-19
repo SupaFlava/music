@@ -7,7 +7,7 @@
   >
     {{ reg_alert_message }}
   </div>
-  <vee-form :validation-schema="schema" @submit="register" :initial-values="userData">
+  <vee-form :validation-schema="schema" @submit="register">
     <!-- Name -->
     <div class="mb-3">
       <label class="inline-block mb-2">Name</label>
@@ -31,7 +31,7 @@
       <ErrorMessage class="text-red-600" name="email" />
     </div>
     <!-- Age -->
-    <div class="mb-3">
+    <!-- <div class="mb-3">
       <label class="inline-block mb-2">Age</label>
       <vee-field
         name="age"
@@ -39,7 +39,7 @@
         class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
       />
       <ErrorMessage class="text-red-600" name="age" />
-    </div>
+    </div> -->
     <!-- Password -->
     <div class="mb-3">
       <label class="inline-block mb-2">Password</label>
@@ -66,7 +66,7 @@
       <ErrorMessage class="text-red-600" name="confirm_password" />
     </div>
     <!-- Country -->
-    <div class="mb-3">
+    <!-- <div class="mb-3">
       <label class="inline-block mb-2">Country</label>
       <vee-field
         as="select"
@@ -78,7 +78,7 @@
         <option value="Germany">Germany</option>
       </vee-field>
       <ErrorMessage class="text-red-600" name="country" />
-    </div>
+    </div> -->
     <!-- TOS -->
     <div class="mb-3 pl-6">
       <vee-field
@@ -113,15 +113,11 @@ export default {
       schema: {
         name: 'required|min:3|max:100|alpha_spaces',
         email: 'required|min:3|max:100|email_field',
-        age: 'required|min_value:18|max_value:100',
         password: 'required|min:9|max:100|excluded:password',
         confirm_password: 'password_mismatch:@password',
-        country: 'required',
         tos: 'tos'
       },
-      userData: {
-        country: 'USA'
-      },
+
       reg_in_submission: false,
       reg_show_alert: false,
       reg_alert_variant: 'bg-blue-500',
