@@ -30,16 +30,7 @@
       />
       <ErrorMessage class="text-red-600" name="email" />
     </div>
-    <!-- Age -->
-    <!-- <div class="mb-3">
-      <label class="inline-block mb-2">Age</label>
-      <vee-field
-        name="age"
-        type="number"
-        class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-      />
-      <ErrorMessage class="text-red-600" name="age" />
-    </div> -->
+
     <!-- Password -->
     <div class="mb-3">
       <label class="inline-block mb-2">Password</label>
@@ -65,21 +56,7 @@
       />
       <ErrorMessage class="text-red-600" name="confirm_password" />
     </div>
-    <!-- Country -->
-    <!-- <div class="mb-3">
-      <label class="inline-block mb-2">Country</label>
-      <vee-field
-        as="select"
-        name="country"
-        class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-      >
-        <option value="USA">USA</option>
-        <option value="Mexico">Mexico</option>
-        <option value="Germany">Germany</option>
-      </vee-field>
-      <ErrorMessage class="text-red-600" name="country" />
-    </div> -->
-    <!-- TOS -->
+
     <div class="mb-3 pl-6">
       <vee-field
         name="tos"
@@ -138,6 +115,7 @@ export default {
       try {
         await this.createUser(values)
       } catch (error) {
+		console.log(error)
         this.reg_in_submission = false
         this.reg_alert_variant = 'bg-red-500'
         this.reg_alert_message = 'An unexpected error occured. Please try again later.'
@@ -145,7 +123,7 @@ export default {
       }
 
       this.reg_alert_variant = 'bg-green-500'
-      this.reg_alert_message = 'sucess! your account has been created.'
+      this.reg_alert_message = 'success! your account has been created.'
 
       window.location.reload()
     }

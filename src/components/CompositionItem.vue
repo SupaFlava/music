@@ -109,7 +109,7 @@ export default {
     async edit(values) {
       this.in_submission = true
       this.show_alert = true
-      this.alert_variant = 'bg-bluee-500'
+      this.alert_variant = 'bg-blue-500'
       this.alert_message = 'Please wait! Updating song info.'
       try {
         await songsCollection.doc(this.song.docID).update(values)
@@ -123,14 +123,23 @@ export default {
       this.updateUnsavedFlag(false)
       this.in_submission = false
       this.alert_variant = 'bg-green-500'
-      this.alert_message = 'Sucess !'
+      this.alert_message = 'Success !'
     },
     async deleteSong() {
-      const storageRef = storage.ref()
-      const songRef = storageRef.child(`songs/${this.song.original_name}`)
-      await songRef.delete()
-      await songsCollection.doc(this.song.docID).delete()
-      this.removeSong(this.index)
+	  const confirm = confirm(`Delete "${this.song.modified_name}"? This cannot be undone.`)
+	  if (!confirm) 
+		return
+	  try {
+		  const storageRef = storage.ref()
+		  const path = this.song.storage_path || this.song.original_name
+		  const songRef = storageRef.child(`songs/${path}`)
+		  await songRef.delete()
+		  await songsCollection.doc(this.song.docID).delete()
+		  this.removeSong(this.index)
+	  } catch (error) {
+		console.log(error)
+		alert("Something went wrong deleting this song. Please try again")
+	  }
     }
   },
   components: { ErrorMessage }

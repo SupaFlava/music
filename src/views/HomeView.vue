@@ -14,11 +14,6 @@
           </p>
         </div>
       </div>
-
-      <!-- <img
-      class="relative block mx-auto mt-5 -mb-20 w-auto max-w-full"
-     src="/assets/img/introduction-music.png" 
-    /> -->
     </section>
 
     <!-- Main Content -->
@@ -33,6 +28,13 @@
         </div>
         <!-- Playlist -->
         <ol id="playlist">
+			<!--Loading state-->
+			<li v-if="loading" class="p-6 text-center text-gray-400">
+				Loading tracks...
+			</li>
+			<li v-else-if="!songs.length" class="p-6 text-center text-gray-400">
+				No songs yet - be the first to upload one!
+			</li>
           <app-song-item v-for="song in songs" :key="song.docID" :song="song" />
         </ol>
         <!-- .. end Playlist -->
@@ -92,7 +94,6 @@ export default {
       } else {
         snapshots = await songsCollection.orderBy('modified_name').limit(this.maxPerPage).get()
       }
-
       snapshots.forEach((document) => {
         this.songs.push({
           docID: document.id,
@@ -100,6 +101,7 @@ export default {
         })
       })
       this.pendingRequest = false
+	  this.loading  = false
     }
   }
 }

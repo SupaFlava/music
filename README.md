@@ -1,57 +1,59 @@
-# music
+# Scratch Bank
 
-This template should help get you started developing with Vue 3 in Vite.
+A full-stack music sharing app built with Vue 3 and Firebase — users can register, upload MP3 tracks, browse and stream a shared library, and leave comments on songs.
 
-## Recommended IDE Setup
+## Features
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- **Authentication** — email/password registration and login via Firebase Auth, with form validation (vee-validate) and a tabbed login/register modal
+- **Drag-and-drop uploads** — MP3 upload to Firebase Storage with live per-file progress bars, MIME-type and file-size validation
+- **Streaming player** — persistent bottom player with play/pause, seek/scrub, and a running duration display, backed by a Pinia store
+- **Song management** — users can edit or delete their own uploaded tracks, with ownership enforced both client-side and via Firestore security rules
+- **Comments** — real-time comment threads per song, sortable by newest/oldest, backed by Firestore
+- **Infinite scroll** — the home feed paginates song results as the user scrolls
+- **Internationalization** — English/Dutch locale toggle (vue-i18n)
+- **Security-conscious by design** — Firestore/Storage rules require authentication, enforce per-user ownership, and cap file size and content type server-side; a Cloud Billing budget alert guards against unexpected usage costs
 
-## Customize configuration
+## Tech Stack
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- **Frontend:** Vue 3 (Options API), Vue Router, Pinia, vue-i18n, vee-validate, Tailwind CSS
+- **Backend:** Firebase Authentication, Cloud Firestore, Firebase Storage
+- **Tooling:** Vite
 
-## Project Setup
+## Getting Started
 
-```sh
-npm install
-```
+### Prerequisites
 
-### Compile and Hot-Reload for Development
+- Node.js and npm
+- A Firebase project with Authentication (Email/Password), Firestore, and Storage enabled
 
-```sh
-npm run dev
-```
+### Setup
 
-### Compile and Minify for Production
+1. Clone the repo and install dependencies:
+   ```bash
+   git clone <repo-url>
+   cd <repo-folder>
+   npm install
+   ```
 
-```sh
-npm run build
-```
+2. Copy `.env.example` to `.env` and fill in your Firebase project's config values:
+   ```bash
+   cp .env.example .env
+   ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+3. Deploy the Firestore and Storage security rules in `firestore.rules` and `storage.rules` from the Firebase Console (or via the Firebase CLI), so uploads and writes are properly restricted to authenticated, owning users.
 
-```sh
-npm run test:unit
-```
+4. Run the dev server:
+   ```bash
+   npm run dev
+   ```
 
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
+## What I'd build next
 
-```sh
-npm run test:e2e:dev
-```
+- Migrate from the (now deprecated) Firebase v8 namespaced SDK to the v9 modular SDK
+- Add search/filtering by genre and a proper collapsible mobile nav
+- Add automated tests around the upload flow and auth store
+- TypeScript conversion
 
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
+## License
 
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+This project is for portfolio/demonstration purposes.

@@ -67,13 +67,14 @@ export default {
       try {
         await this.authenticate(values)
       } catch (error) {
+		console.log(error)
         this.login_in_submission = false
         this.login_alert_variant = 'bg-red-500'
         this.login_alert_message = 'Invalid Login Details'
         return
       }
       this.login_alert_variant = 'bg-green-500'
-      this.login_alert_message = 'Sucess! You are now Logged in'
+      this.login_alert_message = 'Success! You are now Logged in'
       window.location.reload()
     }
   }
