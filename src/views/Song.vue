@@ -77,9 +77,8 @@
         <!-- Comment Author -->
         <div class="mb-5">
           <div class="font-bold">{{ comment.name }}</div>
-          <time>{{ comment.datePosted }}</time>
+          <time>{{ formatDate(comment.datePosted) }}</time>
         </div>
-
         <p>
           {{ comment.content }}
         </p>
@@ -88,7 +87,7 @@
   </main>
 </template>
 <script>
-import { songsCollection, auth, commentsCollection } from '@/includes/firebase'
+import { songsCollection, auth, commentsCollection, serverTimestap } from '@/includes/firebase'
 import { mapState, mapActions } from 'pinia'
 import useUserStore from '@/stores/user'
 import usePlayerStore from '@/stores/player'
@@ -112,17 +111,14 @@ export default {
     ...mapState(useUserStore, ['userLoggedIn']),
     sortedComments() {
       return this.comments.slice().sort((a, b) => {
-        if (this.sort === '1') {
-          return new Date(b.datePosted) - new Date(a.datePosted)
-        }
-        return new Date(a.datePosted) - new Date(b.datePosted)
+		const aTime = a.datePosted ? a.datePosted.toMillis() : Date.now()
+		const bTime = b.datePosted ? b.datePosted.toMillis() : Date.now()
+		return this.sort == '1' ? bTime - aTime : aTime - bTime
       })
     }
   },
   async beforeRouteEnter(to, from, next) {
     const docSnapshot = await songsCollection.doc(to.params.id).get()
-
-    //Context to the compoenent "treated like this"
     next((vm) => {
       if (!docSnapshot.exists) {
         vm.$router.push({ name: 'home' })
@@ -145,7 +141,7 @@ export default {
 
       const comment = {
         content: values.comment,
-        datePosted: new Date().toString(),
+        datePosted: serverTimestap(),
         sid: this.$route.params.id,
         name: auth.currentUser.displayName,
         uid: auth.currentUser.uid
@@ -174,7 +170,15 @@ export default {
           ...doc.data()
         })
       })
-    }
+    },
+	formatDate(timestamp) {
+    if (!timestamp) return 'Just now'
+    return timestamp.toDate().toLocaleDateString(undefined, {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    })
+  }
   },
   watch: {
     sort(newVal) {

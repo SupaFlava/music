@@ -12,6 +12,14 @@
             <i class="fa fa-compact-disc float-right text-green-400 text-2xl"></i>
           </div>
           <div class="p-6">
+			<!-- Loading state -->
+			<div v-if="loading" class="text-center text-gray-400 py-6">
+			Loading your songs...
+			</div>
+			<!-- Empty state -->
+			<div v-else-if="!songs.length" class="text-center text-gray-400 py-6">
+			You haven't uploaded any songs yet. Use the panel on the left to add your first track.
+			</div>
             <!-- Composition Items -->
             <composition-item
               v-for="(song, i) in songs"
@@ -43,12 +51,14 @@ export default {
   data() {
     return {
       songs: [],
-      unsavedFlag: false
+      unsavedFlag: false,
+	  loading: true
     }
   },
   async created() {
     const snapshot = await songsCollection.where('uid', '==', auth.currentUser.uid).get()
     snapshot.forEach(this.addSong)
+	this.loading = false
   },
   methods: {
     updateSong(i, values) {
@@ -74,15 +84,9 @@ export default {
     if (!this.unsavedFlag) {
       next()
     } else {
-      const leave = confirm('You have have unsaved changes. Are you s ure you want to leave?')
+      const leave = confirm('You have have unsaved changes. Are you sure you want to leave?')
       next(leave)
     }
   }
-
-  // Cancelling Uploads with Refs
-  // beforeRouteLeave(to, from, next) {
-  //   this.$refs.upload.cancelUploads()
-  //   next()
-  // }
 }
 </script>

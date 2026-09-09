@@ -55,12 +55,6 @@ import useUserStore from '@/stores/user'
 
 export default {
   name: 'AppHeader',
-  data() {
-    return {
-      menuOpen: false
-    }
-  },
-
   computed: {
     ...mapStores(useModalStore, useUserStore),
     currentLocale() {
@@ -72,17 +66,12 @@ export default {
       this.modalStore.isOpen = !this.modalStore.isOpen
     },
     signOut() {
-      this.userStore.signOut()
-      if (this.$router.meta.requires.Auth) {
-        this.$router.push({ name: 'home' })
-      }
+    this.userStore.signOut()
+	this.$router.push({name: 'home'})
     },
     changeLocale() {
       this.$i18n.locale = this.$i18n.locale === 'nl' ? 'en' : 'nl'
     }
   },
-  toggleMenu() {
-    this.menuOpen = !this.menuOpen
-  }
 }
 </script>

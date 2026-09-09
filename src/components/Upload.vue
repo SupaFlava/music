@@ -62,6 +62,20 @@ export default {
         if (file.type !== 'audio/mpeg') {
           return
         }
+		const maxSizeBytes = 20 * 1024 * 1024
+		if (file.size > maxSizeBytes )
+		{
+			this.uploads.push({
+				task: {},
+				current_progress: 100,
+				name: file.name,
+				variant: 'bg-red-400',
+				icon: 'fas fa-times',
+				text_class: 'text-red-400'
+			})
+			return
+		}
+
         if (!navigator.onLine) {
           this.uploads.push({
             task: {},
@@ -73,9 +87,9 @@ export default {
           })
           return
         }
-        const storageRef = storage.ref('')
-        const songsRef = storageRef.child(`songs/${file.name}`)
-        const task = songsRef.put(file)
+		const uniqueFileName = `${auth.currentUser.uid}-${Date.now()}-${file.name}`
+		const songsRef = storage.ref(`songs/${uniqueFileName}`)
+		const task = songsRef.put(file)
 
         // push the upload
         const uploadIndex =
@@ -103,10 +117,11 @@ export default {
             const song = {
               uid: auth.currentUser.uid,
               display_name: auth.currentUser.displayName,
-              original_name: task.snapshot.ref.name,
-              modified_name: task.snapshot.ref.name,
+              original_name: file.name,
+              modified_name: file.name,
               genre: '',
-              comment_count: 0
+              comment_count: 0,
+			  storage_path: uniqueFileName
             }
             song.url = await task.snapshot.ref.getDownloadURL()
             const songRef = await songsCollection.add(song)
